@@ -4,12 +4,14 @@ This repo provides the code accompanying the amortized toy example of my master 
 
 
 ## Environment setup
+```
 conda create -n amci
 Conda activate amci
 Conda install pip
 Pip install torch torchvision
 conda install --file requirements_conda.txt
 pip install -r requirements_pip.txt
+```
 
 ## Instructions 
 
@@ -17,7 +19,6 @@ pip install -r requirements_pip.txt
 0. Train `q_ratio` by running 
     ```
     python train_non_iterative_new.py
-
     ``` 
 0. To generate samples from the learned proposal that will be combined into estimates in the next step run
     ```
