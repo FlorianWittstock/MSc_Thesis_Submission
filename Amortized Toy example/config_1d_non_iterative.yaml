@@ -34,8 +34,8 @@ config:
 
   logs_root: null
 
-  #wht about this? 'WRITE NEW CHECKPOINT'
-  checkpoint_q_ratio: /Users/florianwittstock/Documents/ms_thesis_example/TARIS/Amortized/New_Experiment/checkpoint.pytorch
+  #put here the file path of the checkpoint.pytorch
+  checkpoint_q_ratio: 
   
   figure_3_log2_max_samples: 15
   figure_3_number_of_tries: 1000
