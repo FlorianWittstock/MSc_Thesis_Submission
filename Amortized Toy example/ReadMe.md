@@ -25,7 +25,7 @@ pip install -r requirements_pip.txt
     python generate_samples_non_iterative_new.py config_1d_non_iterative.yaml
     ```
     The script saves the generated samples onto the hard drive.
-0. To reproduce the ReMSE figures run the estimator_new_experiments.ipynb notebook using the estimators.py file. Also run AMCI on this problem. This is easiest done by adapting the 'tail_integral_1d' problem to our problem by simply changing $f(x)$ in the `model.py` file.
+0. To reproduce the ReMSE figures run the estimator_new_experiments.ipynb notebook using the estimators.py file. Also run AMCI on this problem. This is easiest done by adapting the 'tail_integral_1d' problem to our problem by simply changing $f(x)$ in the `model.py` file and making sure it does not amortize over $\theta$ by changing the sampling process to simply returning $\theta = 4$.
     
 
 ## Miscellaneous
