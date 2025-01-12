@@ -9,8 +9,8 @@ import hdf5storage
 import torch
 import yaml
 
-import utils_non_iterative_new as utils
-
+from msc_thesis.amortized_toy_example.path_utils import repo_base_path
+from msc_thesis.amortized_toy_example import utils_non_iterative_new as utils
 
 def main():
     parser = configargparse.get_argument_parser()
@@ -67,7 +67,7 @@ def generate_and_save_samples(args):
                             output_dict, format='7.3', store_python_metadata=True)
         print(f'Saved samples at {os.path.join(os.path.dirname(checkpoint_path), "samples.mat")}')
 
-    process_output_dict(data_dict_q_ratio, args.checkpoint_q_ratio)
+    process_output_dict(data_dict_q_ratio, checkpoint_path=os.path.join(utils.repo_base_path, args.checkpoint_q_ratio))
 
     print('Finished.')
 

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm", "wheel"]
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+
+[project]
+name = "msc_thesis"
+description = "MSC Thesis"
+version = "0.1.0"
+authors = [{ name = "Florian Wittstock", email = "florian.Wittstock@web.de" }]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.11.4",
+
+]
+requires-python = "==3.11.4"
+
+[tool.setuptools.packages.find]
+include = ["msc_thesis"]
+namespaces = false
+
+[project.scripts]

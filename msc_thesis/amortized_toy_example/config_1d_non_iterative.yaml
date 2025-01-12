@@ -35,7 +35,7 @@ config:
   logs_root: null
 
   #put here the file path of the checkpoint.pytorch
-  checkpoint_q_ratio: 
+  checkpoint_q_ratio: output/checkpoint.pytorch
   
   figure_3_log2_max_samples: 15
   figure_3_number_of_tries: 1000

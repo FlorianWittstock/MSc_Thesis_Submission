@@ -1,0 +1,31 @@
+name: msc-thesis
+channels:
+  - conda-forge
+dependencies:
+    - python==3.11.4
+    - tqdm
+    - scipy==1.10.1
+    - numpy==1.25.2
+    - matplotlib
+    - seaborn
+    - pymongo
+    - dnspython
+    - pyyaml
+    - configargparse
+    - ipykernel
+    - jupyter
+    - scikit-learn
+    - setuptools-scm
+    - setuptools >=61 # Adds support for pyproject.toml package declaration.
+    - pip
+    - pip:
+        - git+https://github.com/facebookresearch/higher.git@772717e8145164f230cdf04ecb51ac011dc4e0bf
+        - git+https://github.com/rtqichen/torchdiffeq.git@24486280f266c5c3e26809cd0bccc74c8a62383f
+        - sacred==0.8
+        - tensorboardx==2.0
+        - hdf5storage
+        - pyyaml
+        - tqdm
+        - torch==2.0.1
+        - torchvision==0.15.2
+
