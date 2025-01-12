@@ -1,8 +1,0 @@
-git+https://github.com/facebookresearch/higher.git@772717e8145164f230cdf04ecb51ac011dc4e0bf
-git+https://github.com/rtqichen/torchdiffeq.git@24486280f266c5c3e26809cd0bccc74c8a62383f
-sacred==0.8
-tensorboardx==2.0
-hdf5storage
-pyyaml
-tqdm
-scipy

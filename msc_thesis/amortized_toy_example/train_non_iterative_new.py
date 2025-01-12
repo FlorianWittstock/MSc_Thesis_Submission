@@ -4,11 +4,14 @@ from types import SimpleNamespace
 
 import torch
 
-import utils_non_iterative_new as utils
-import flows_non_iterative as flows
+# import utils_non_iterative_new as utils
+# import flows_non_iterative as flows
 
+import msc_thesis.amortized_toy_example.utils_non_iterative_new as utils
+from msc_thesis.amortized_toy_example.path_utils import repo_base_path
 
-def train(args, _run, _writer):
+### begin code from github.com/geoffnichols/taboi
+def train(args):
     model = utils.get_model(args)
 
     q = model.TrainingSimple.get_proposal_model(args)
@@ -24,9 +27,11 @@ def train(args, _run, _writer):
     logs = defaultdict(list)
 
     def save_checkpoint():
-        print('Saving model and logs')
+        out_dir = os.path.join(repo_base_path, args.output_folder)
+        print(f'Saving model and logs, {out_dir}')
+        os.makedirs(out_dir, exist_ok=True)
         torch.save((q.state_dict(), args, logs),
-                   os.path.join(args.output_folder, 'checkpoint.pytorch'))
+                    os.path.join(out_dir , 'checkpoint.pytorch'))
 
 
     dataset_size = args.number_train_samples + args.number_validation_samples
@@ -69,14 +74,18 @@ def train(args, _run, _writer):
             print(f'{epoch_no} train_loss: {train_loss:.5f}  '
                   f'validation_loss: {validation_loss:.5f}  '
                   f'local_iter: {local_iter}')
-
+            save_checkpoint()
+            
+            
     # Save the final checkpoint at the end of training
     save_checkpoint()
     pass
+### begin code from github.com/geoffnichols/taboi
+
 
 config_non_iterative = {
     "checkpoint_frequency_in_seconds": 60.0,
-    "checkpoint_q_ratio": "/Users/florianwittstock/Documents/ms_thesis_example/TARIS/Amortized/Non-Iterative/tail_integral_1d_q_ratio_230803_1928_529750_bb53d8b/checkpoint.pytorch",
+    "checkpoint_q_ratio": "checkpoints/TARIS/Amortized/Non-Iterative/tail_integral_1d_q_ratio_230803_1928_529750_bb53d8b/checkpoint.pytorch",
     "epochs": 50,
     "figure_3_log2_max_samples": 15,
     "figure_3_number_of_tries": 1000,
@@ -105,7 +114,7 @@ config_non_iterative = {
     "scheduler_factor": 0.49,
     "scheduler_patience": 50,
     "tail_integral_d": 1,           #we keep this to not change too much in the code
-    "output_folder": "/Users/florianwittstock/Documents/ms_thesis_example/TARIS/Amortized/New_Experiment",
+    "output_folder": "output",
 }
 
 def main(seed,
@@ -120,7 +129,7 @@ def main(seed,
     print("Loaded configuration:")   
     print(args)  # Add this line to print the loaded configuration
     
-    train(args, None, None)
+    train(args)
     
 
 if __name__ == '__main__':

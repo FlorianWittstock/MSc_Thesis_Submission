@@ -17,6 +17,10 @@ import tensorboardX
 import torch
 import tqdm
 
+from pathlib import Path
+
+from msc_thesis.amortized_toy_example.path_utils import repo_base_path
+
 
 def git_revision():
     return subprocess.check_output("git rev-parse --short HEAD".split()).strip().decode("utf-8")
@@ -129,13 +133,18 @@ def sacred_main_helper(train_func, args, _run):
 
 
 def validate_checkpoint(checkpoint_filepath):
+    print(f'Validating the checkpoint: {checkpoint_filepath}.')
     if not (os.path.isfile(checkpoint_filepath) and os.access(checkpoint_filepath, os.R_OK)):
         raise Exception(f'Cannot access the checkpoint, it doesnt exist or dont have the right permissions: '
                         f'{checkpoint_filepath}.')
 
 
 def validate_checkpoints(args):
-    validate_checkpoint(args.checkpoint_q_ratio)
+    print(f'Validating the checkpoints. {repo_base_path}')
+    print(f'args.checkpoint_q_ratio: {args.checkpoint_q_ratio}')
+    x = os.path.join(str(repo_base_path), str(args.checkpoint_q_ratio))   
+    print(f'x: {x}')
+    validate_checkpoint(x)
 
 
 def dict_of_lists_to_list_of_dicts(dict_of_lists):
@@ -227,7 +236,8 @@ def load_proposals_from_checkpoints(object, factors, model_parameters=tuple()):
     """
     checkpoints_args_dicts = []
     factor = 'q_ratio'
-    checkpoint = torch.load(object.args.__dict__[f'checkpoint_{factor}'], map_location=object.args.device)
+    checkpoint_file = repo_base_path / object.args.__dict__[f'checkpoint_{factor}'] 
+    checkpoint = torch.load(checkpoint_file, map_location=object.args.device)
     object.__setattr__(factor, object.get_proposal_model(checkpoint[1]))
     object.__getattribute__(factor).load_state_dict(checkpoint[0])
     checkpoints_args_dicts.append(checkpoint[-2].__dict__)
