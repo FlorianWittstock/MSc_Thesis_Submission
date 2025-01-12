@@ -68,8 +68,8 @@ This script saves the generated samples in the output folder.
 To reproduce the ReMSE figures:  
 - Use the `estimator_new_experiments.ipynb` notebook alongside the `estimators.py` file.  
 - Run the **AMCI** estimator on the problem by adapting the `tail_integral_1d` setup to this problem:  
-  - Update \( f(x) \) in the `model.py` file.  
-  - Ensure it does not amortize over \( \theta \) by modifying the sampling process to return \( \theta = 4 \).
+  - Update $f(x)$ in the `model.py` file.  
+  - Ensure it does not amortize over \( \theta \) by modifying the sampling process to return $\theta = 4$.
 
 ---
 
